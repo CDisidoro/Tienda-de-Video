@@ -25,9 +25,9 @@ public class PostgreSQL {
             try {
                 conexion = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Tienda",usuario, clave);
                 boolean valido = conexion.isValid(5000);
-                System.out.println(valido  ? "TEST OK" : "TEST FAIL");
+                System.out.println(valido  ? "Conexión Exitosa" : "Conexión Fallida");
             } catch (SQLException ex) {
-                System.out.println("Error: "+ex);
+                System.out.println("Ha ocurrido un error: "+ex);
             }
         }
 }
