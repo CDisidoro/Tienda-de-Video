@@ -5,6 +5,7 @@
  */
 package tienda.de.video;
 import Conector.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Camilo D'isidoro
@@ -129,11 +130,14 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void iniciar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciar1ActionPerformed
-        System.out.println(usuarioCampo.getText());
-        System.out.println(passCampo.getPassword());
         PostgreSQL conectar = new PostgreSQL();
         String pass = String.valueOf(passCampo.getPassword());
-        conectar.loginDB(usuarioCampo.getText(), pass);
+        int conexion = conectar.loginDB(usuarioCampo.getText(), pass);
+        if(conexion==1){
+            JOptionPane.showMessageDialog( null, "Conexión Exitosa\nPuede ingresar al sistema" );
+        }else{
+            JOptionPane.showMessageDialog( null, "Conexión Fallida\nAsegurese de haber digitado correctamente su informacion" );
+        }
     }//GEN-LAST:event_iniciar1ActionPerformed
 
     /**

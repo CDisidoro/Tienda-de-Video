@@ -13,7 +13,8 @@ import java.util.logging.Logger;
  */
 public class PostgreSQL {
     String driver = "org.postgresql.Driver";
-        public void loginDB(String usuario, String clave){
+    int conexito = 0;
+        public int loginDB(String usuario, String clave){
             //IMPORTA EL DRIVER POSTGRESQL
            try { 
                 Class.forName(driver);
@@ -24,10 +25,9 @@ public class PostgreSQL {
            Connection conexion = null;
             try {
                 conexion = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Tienda",usuario, clave);
-                boolean valido = conexion.isValid(5000);
-                System.out.println(valido  ? "Conexión Exitosa" : "Conexión Fallida");
+                conexito = 1;
             } catch (SQLException ex) {
-                System.out.println("Ha ocurrido un error: "+ex);
             }
+            return conexito;
         }
 }
