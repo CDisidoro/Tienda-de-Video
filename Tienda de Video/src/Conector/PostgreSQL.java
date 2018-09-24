@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  */
 public class PostgreSQL {
     String driver = "org.postgresql.Driver";
-        public void test(String usuario, String clave){
+        public void loginDB(String usuario, String clave){
             //IMPORTA EL DRIVER POSTGRESQL
            try { 
                 Class.forName(driver);
