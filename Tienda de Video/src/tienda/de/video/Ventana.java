@@ -4,18 +4,18 @@
  * and open the template in the editor.
  */
 package tienda.de.video;
-
+import Conector.*;
 /**
  *
  * @author Camilo D'isidoro
  */
 public class Ventana extends javax.swing.JFrame {
-
     /**
      * Creates new form Ventana_Prueba
      */
     public Ventana() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -57,8 +57,6 @@ public class Ventana extends javax.swing.JFrame {
 
         titulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         titulo.setText("Tienda de Video VideoLand");
-
-        passCampo.setText("jPasswordField1");
 
         jScrollPane1.setViewportView(usuarioCampo);
 
@@ -127,11 +125,15 @@ public class Ventana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void iniciar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciar1ActionPerformed
-        // TODO add your handling code here:
+        System.out.println(usuarioCampo.getText());
+        System.out.println(passCampo.getPassword());
+        PostgreSQL conectar = new PostgreSQL();
+        String pass = String.valueOf(passCampo.getPassword());
+        conectar.loginDB(usuarioCampo.getText(), pass);
     }//GEN-LAST:event_iniciar1ActionPerformed
 
     /**
