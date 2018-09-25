@@ -5,6 +5,8 @@
  */
 package acuario;
 import Conector.*;
+import java.sql.Connection;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 /**
  *
@@ -154,7 +156,11 @@ public class Login extends javax.swing.JFrame {
         if(conexion==1){
             JOptionPane.showMessageDialog( null, "Conexión Exitosa\nPuede ingresar al sistema");
             dispose();
-            new Menu().setVisible(true);
+            Connection con;
+            con = PostgreSQL.getCon();
+            Statement stmt;
+            stmt = PostgreSQL.getState();
+            new Menu(con,stmt).setVisible(true);
         }else{
             JOptionPane.showMessageDialog( null, "Conexión Fallida\nAsegurese de haber digitado correctamente su informacion","Conexion Fallida",JOptionPane.ERROR_MESSAGE );
         }

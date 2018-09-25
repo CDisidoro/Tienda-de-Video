@@ -5,16 +5,22 @@
  */
 package acuario;
 
+import java.sql.Connection;
+import java.sql.Statement;
+
 /**
  *
  * @author Camilo D'isidoro
  */
 public class Menu extends javax.swing.JFrame {
-
+    static Connection con;
+    static Statement stmt;
     /**
      * Creates new form Menu
      */
-    public Menu() {
+    public Menu(Connection con,Statement stmt) {
+        this.con = con;
+        this.stmt = stmt;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -109,7 +115,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void EspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EspActionPerformed
         dispose();
-        new Especie().setVisible(true);
+        new Especie(con,stmt).setVisible(true);
     }//GEN-LAST:event_EspActionPerformed
 
     private void salidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salidaActionPerformed
@@ -146,7 +152,7 @@ public class Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+                new Menu(con,stmt).setVisible(true);
             }
         });
     }
