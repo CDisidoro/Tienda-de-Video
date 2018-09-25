@@ -1,6 +1,6 @@
-package tienda.de.video;
+package acuario;
 
-public class TiendaDeVideo {
+public class Acuario {
     public static void main(String[] args) {
         new Login().setVisible(true);
     }
