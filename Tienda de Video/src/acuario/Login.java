@@ -41,6 +41,8 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VideoLand");
+        setName("Login"); // NOI18N
+        setResizable(false);
 
         cancelar.setText("Cancelar");
         cancelar.setToolTipText("");
@@ -151,6 +153,8 @@ public class Login extends javax.swing.JFrame {
         int conexion = conectar.loginDB(usuarioCampo.getText(), pass);
         if(conexion==1){
             JOptionPane.showMessageDialog( null, "Conexión Exitosa\nPuede ingresar al sistema");
+            dispose();
+            new Menu().setVisible(true);
         }else{
             JOptionPane.showMessageDialog( null, "Conexión Fallida\nAsegurese de haber digitado correctamente su informacion","Conexion Fallida",JOptionPane.ERROR_MESSAGE );
         }
