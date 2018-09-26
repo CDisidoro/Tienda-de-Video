@@ -18,8 +18,6 @@ public class Menu extends javax.swing.JFrame {
      * Creates new form Menu
      */
     public Menu() {
-            System.out.println(PostgreSQL.getCon());
-            System.out.println(PostgreSQL.getState());
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -59,12 +57,27 @@ public class Menu extends javax.swing.JFrame {
         archivo.add(Esp);
 
         Tan.setText("Tanque");
+        Tan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TanActionPerformed(evt);
+            }
+        });
         archivo.add(Tan);
 
         Pez.setText("Pez");
+        Pez.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PezActionPerformed(evt);
+            }
+        });
         archivo.add(Pez);
 
         Evt.setText("Evento");
+        Evt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EvtActionPerformed(evt);
+            }
+        });
         archivo.add(Evt);
 
         jMenuBar1.add(archivo);
@@ -118,8 +131,24 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_EspActionPerformed
 
     private void salidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salidaActionPerformed
-       System.exit(0);
+       PostgreSQL.logout();
+        System.exit(0);
     }//GEN-LAST:event_salidaActionPerformed
+
+    private void TanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TanActionPerformed
+        dispose();
+        new Tanque().setVisible(true);
+    }//GEN-LAST:event_TanActionPerformed
+
+    private void PezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PezActionPerformed
+        dispose();
+        new Pez().setVisible(true);
+    }//GEN-LAST:event_PezActionPerformed
+
+    private void EvtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EvtActionPerformed
+        dispose();
+        new Evento().setVisible(true);
+    }//GEN-LAST:event_EvtActionPerformed
 
     /**
      * @param args the command line arguments

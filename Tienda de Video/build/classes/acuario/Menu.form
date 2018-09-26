@@ -21,16 +21,25 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tanque"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TanActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Pez">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pez"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PezActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Evt">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Evento"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EvtActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

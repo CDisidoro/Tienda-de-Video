@@ -165,6 +165,7 @@ public class Login extends javax.swing.JFrame {
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
        passCampo.setText(null);
        usuarioCampo.setText(null);
+       usuarioCampo.requestFocus();
     }//GEN-LAST:event_limpiarActionPerformed
 
     /**

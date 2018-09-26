@@ -6,22 +6,19 @@
 package acuario;
 
 import Conector.PostgreSQL;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Camilo D'isidoro
  */
-public class Especie extends javax.swing.JFrame {
+public class Tanque extends javax.swing.JFrame {
+
     /**
-     * Creates new form Especie
+     * Creates new form Tanque
      */
-    public Especie() {
+    public Tanque() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -35,36 +32,25 @@ public class Especie extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        codigoCampo = new javax.swing.JTextField();
-        nombreCampo = new javax.swing.JTextField();
-        alimentoCampo = new javax.swing.JTextField();
         guardar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
         limpiar = new javax.swing.JButton();
         volver = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        codigoCampo = new javax.swing.JTextField();
+        nombreCampo = new javax.swing.JTextField();
+        colorCampo = new javax.swing.JTextField();
+        volumenCampo = new javax.swing.JTextField();
+        codigo = new javax.swing.JLabel();
+        nombre = new javax.swing.JLabel();
+        color = new javax.swing.JLabel();
+        volumen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Especie");
+        setTitle("Tanque");
         setResizable(false);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Mantenimiento Especie");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Codigo");
-
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Nombre");
-
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Alimento");
 
         guardar.setText("Guardar");
         guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -103,58 +89,72 @@ public class Especie extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Mantenimiento Tanque");
+
+        codigo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        codigo.setText("Codigo");
+
+        nombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nombre.setText("Nombre");
+
+        color.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        color.setText("Color");
+
+        volumen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        volumen.setText("Volumen");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(123, 123, 123))
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(guardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(codigoCampo, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(128, 128, 128)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(codigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(codigoCampo)
+                    .addComponent(guardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                            .addComponent(nombreCampo))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
-                            .addComponent(alimentoCampo))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(modificar)
-                            .addComponent(limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(volver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(63, Short.MAX_VALUE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(volumenCampo)
+                    .addComponent(limpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                    .addComponent(nombreCampo)
+                    .addComponent(modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(volumen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(colorCampo)
+                    .addComponent(volver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(color, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(61, 61, 61))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(39, 39, 39)
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(codigo)
+                    .addComponent(nombre)
+                    .addComponent(color))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(codigoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombreCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(alimentoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
+                    .addComponent(colorCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(volumen)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(volumenCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardar)
                     .addComponent(modificar)
@@ -164,36 +164,41 @@ public class Especie extends javax.swing.JFrame {
                     .addComponent(buscar)
                     .addComponent(limpiar)
                     .addComponent(volver))
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-            if("".equals(codigoCampo.getText()) || "".equals(nombreCampo.getText()) || "".equals(alimentoCampo.getText())){
+        if("".equals(codigoCampo.getText()) || "".equals(nombreCampo.getText()) || "".equals(colorCampo.getText()) || "".equals(volumenCampo.getText())){
                 JOptionPane.showMessageDialog( null, "Guardado Fallido\nAsegurese de completar todos los campos","Guardado Fallido",JOptionPane.ERROR_MESSAGE );
+        }else{
+            if(Validador.numeros(codigoCampo.getText()) == 0 || Validador.numeros(volumenCampo.getText()) == 0){
+                JOptionPane.showMessageDialog( null, "Dato Erroneo\nSolo coloque numeros en los campos Codigo y Volumen","Dato Erroneo",JOptionPane.ERROR_MESSAGE );
             }else{
-                if(Validador.numeros(codigoCampo.getText()) == 0){
-                JOptionPane.showMessageDialog( null, "Dato Erroneo\nSolo digite numeros en el campo Codigo","Dato Erroneo",JOptionPane.ERROR_MESSAGE );
-                }else{
+                
                     int cod = Integer.parseInt(codigoCampo.getText());
+                    int volumen = Integer.parseInt(volumenCampo.getText());
                     String nom = nombreCampo.getText();
-                    String alimento = alimentoCampo.getText();
-                    String sql = "INSERT INTO especie (idesp,nombreesp,alimentoesp) VALUES ("+cod+",'"+nom+"','"+alimento+"')";
+                    String color = colorCampo.getText();
+                    
+                    String sql = "INSERT INTO tanque (idtan,nombretan,colortan,volumentan) VALUES ("+cod+",'"+nom+"','"+color+"',"+volumen+");";
+                    
                     if(PostgreSQL.actualizar(sql)==1){
-                    JOptionPane.showMessageDialog( null, "Guardado Exitoso\nSe ha guardado con éxito la especie nueva","Guardado Exitoso",JOptionPane.INFORMATION_MESSAGE );
+                    JOptionPane.showMessageDialog( null, "Guardado Exitoso\nSe ha guardado con éxito el tanque nuevo","Guardado Exitoso",JOptionPane.INFORMATION_MESSAGE );
                     }else{
-                    JOptionPane.showMessageDialog( null, "Guardado Fallido\nVerifique que el código no haya sido ingresado para otra especie","Guardado Fallido",JOptionPane.ERROR_MESSAGE );
+                    JOptionPane.showMessageDialog( null, "Guardado Fallido\nVerifique que el código no haya sido ingresado para otro tanque","Guardado Fallido",JOptionPane.ERROR_MESSAGE );
                     }
-                }
             }
+        }
     }//GEN-LAST:event_guardarActionPerformed
 
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
         codigoCampo.setText(null);
         nombreCampo.setText(null);
-        alimentoCampo.setText(null);
+        colorCampo.setText(null);
+        volumenCampo.setText(null);
         codigoCampo.requestFocus();
     }//GEN-LAST:event_limpiarActionPerformed
 
@@ -203,23 +208,26 @@ public class Especie extends javax.swing.JFrame {
     }//GEN-LAST:event_volverActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-            if("".equals(codigoCampo.getText()) || "".equals(nombreCampo.getText()) || "".equals(alimentoCampo.getText())){
-                JOptionPane.showMessageDialog( null, "Actualizacion Fallido\nAsegurese de completar todos los campos","Actualizacion Fallido",JOptionPane.ERROR_MESSAGE );
+        if("".equals(codigoCampo.getText()) || "".equals(nombreCampo.getText()) || "".equals(colorCampo.getText()) || "".equals(volumenCampo.getText())){
+                JOptionPane.showMessageDialog( null, "Actualizacion Fallida\nAsegurese de completar todos los campos","Actualizacion Fallida",JOptionPane.ERROR_MESSAGE );
+        }else{
+            if(Validador.numeros(codigoCampo.getText()) == 0 || Validador.numeros(volumenCampo.getText()) == 0){
+                JOptionPane.showMessageDialog( null, "Dato Erroneo\nSolo coloque numeros en los campos Codigo y Volumen","Dato Erroneo",JOptionPane.ERROR_MESSAGE );
             }else{
-                if(Validador.numeros(codigoCampo.getText()) == 0){
-                JOptionPane.showMessageDialog( null, "Dato Erroneo\nSolo digite numeros en el campo Codigo","Dato Erroneo",JOptionPane.ERROR_MESSAGE );
-                }else{
+                
                     int cod = Integer.parseInt(codigoCampo.getText());
+                    int volumen = Integer.parseInt(volumenCampo.getText());
                     String nom = nombreCampo.getText();
-                    String alimento = alimentoCampo.getText();
-                    String sql = "UPDATE especie SET idesp="+cod+", nombreesp='"+nom+"', alimentoesp='"+alimento+"' WHERE idesp="+cod;
+                    String color = colorCampo.getText();
+                    String sql = "UPDATE tanque SET nombretan='"+nom+"',colortan='"+color+"',volumentan="+volumen+" WHERE idtan="+cod;
+                    
                     if(PostgreSQL.actualizar(sql)==1){
-                    JOptionPane.showMessageDialog( null, "Actualizacion Exitosa\nSe ha actualizado con éxito la especie","Actualizacion Exitosa",JOptionPane.INFORMATION_MESSAGE );
+                    JOptionPane.showMessageDialog( null, "Actualizacion Exitosa\nSe ha guardado con éxito el tanque nuevo","Actualizacion Exitosa",JOptionPane.INFORMATION_MESSAGE );
                     }else{
-                    JOptionPane.showMessageDialog( null, "Actualizacion Fallida\nVerifique que el código haya sido ingresado para una especie","Actualizacion Fallida",JOptionPane.ERROR_MESSAGE );
+                    JOptionPane.showMessageDialog( null, "Actualizacion Fallida\nVerifique que el código haya sido ingresado para otro tanque","Actualizacion Fallida",JOptionPane.ERROR_MESSAGE );
                     }
-                }
             }
+        }
     }//GEN-LAST:event_modificarActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
@@ -230,11 +238,11 @@ public class Especie extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog( null, "Dato Erroneo\nSolo digite numeros en el campo Codigo","Dato Erroneo",JOptionPane.ERROR_MESSAGE );
             }else{
                     int cod = Integer.parseInt(codigoCampo.getText());
-                    String sql="DELETE FROM especie WHERE idesp="+cod;
+                    String sql="DELETE FROM especie WHERE idtan="+cod;
                     if(PostgreSQL.actualizar(sql)==1){
-                    JOptionPane.showMessageDialog( null, "Borrado Exitoso\nSe ha borado con éxito la especie","Borrado Exitoso",JOptionPane.INFORMATION_MESSAGE );
+                    JOptionPane.showMessageDialog( null, "Borrado Exitoso\nSe ha borrado con éxito el tanque","Borrado Exitoso",JOptionPane.INFORMATION_MESSAGE );
                     }else{
-                    JOptionPane.showMessageDialog( null, "Borrado Fallido\nVerifique que el código haya sido ingresado para un especie","Borrado Fallido",JOptionPane.ERROR_MESSAGE );
+                    JOptionPane.showMessageDialog( null, "Borrado Fallido\nVerifique que el código haya sido ingresado para un tanque","Borrado Fallido",JOptionPane.ERROR_MESSAGE );
                     }
             }
         }
@@ -257,37 +265,39 @@ public class Especie extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Especie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tanque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Especie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tanque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Especie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tanque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Especie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tanque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Especie().setVisible(true);
+                new Tanque().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField alimentoCampo;
     private javax.swing.JButton buscar;
+    private javax.swing.JLabel codigo;
     private javax.swing.JTextField codigoCampo;
+    private javax.swing.JLabel color;
+    private javax.swing.JTextField colorCampo;
     private javax.swing.JButton eliminar;
     private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton limpiar;
     private javax.swing.JButton modificar;
+    private javax.swing.JLabel nombre;
     private javax.swing.JTextField nombreCampo;
+    private javax.swing.JLabel volumen;
+    private javax.swing.JTextField volumenCampo;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }

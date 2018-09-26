@@ -21,23 +21,50 @@ public class PostgreSQL {
                 stmt = (Statement) conexion.createStatement();
             } catch (SQLException ex) {
             }
-            System.out.println(conexion);
-            System.out.println(stmt);
             return conexito;
         }
-        public static void comando(String sql){
+        
+        public static void logout(){
             try{
-                stmt.executeUpdate(sql);
+                conexion.close();
             }catch(SQLException e){
                 System.out.println(e);
             }
         }
         
-        
-        public static Connection getCon(){
-            return conexion;
+        public static int actualizar(String sql){
+            int exito = 0;
+            try{
+                stmt.executeUpdate(sql);
+                exito = 1;
+            }catch(SQLException e){
+                System.out.println(e);
+            }
+            return exito;
         }
-        public static Statement getState(){
-            return stmt;
+        
+        public static ResultSet consultar(String sql){
+            ResultSet resultado = null;
+            try{
+                resultado = stmt.executeQuery(sql);
+            }catch(SQLException e){
+                System.out.println(e);
+            }
+            return resultado;
+        }
+        
+        public static void imprimir(ResultSet resultado){
+            try{
+                while(resultado.next()){
+                    String dato = "";
+                    int columnas = resultado.getMetaData().getColumnCount();
+                    for(int i=1;i<columnas;i++){
+                        dato = dato + "  " + ((resultado.getObject(i) == null) ? "" : resultado.getObject(i).toString());
+                    }
+                    System.out.println(dato);
+                }
+            }catch(SQLException e){
+                System.out.println(e);
+            }
         }
 }
