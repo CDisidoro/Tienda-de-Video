@@ -18,10 +18,22 @@ public class PostgreSQL {
             try {
                 conexion = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Acuario",usuario, clave);
                 conexito = 1;
+                stmt = (Statement) conexion.createStatement();
             } catch (SQLException ex) {
             }
+            System.out.println(conexion);
+            System.out.println(stmt);
             return conexito;
         }
+        public static void comando(String sql){
+            try{
+                stmt.executeUpdate(sql);
+            }catch(SQLException e){
+                System.out.println(e);
+            }
+        }
+        
+        
         public static Connection getCon(){
             return conexion;
         }

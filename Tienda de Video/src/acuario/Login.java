@@ -156,11 +156,7 @@ public class Login extends javax.swing.JFrame {
         if(conexion==1){
             JOptionPane.showMessageDialog( null, "Conexión Exitosa\nPuede ingresar al sistema");
             dispose();
-            Connection con;
-            con = PostgreSQL.getCon();
-            Statement stmt;
-            stmt = PostgreSQL.getState();
-            new Menu(con,stmt).setVisible(true);
+            new Menu().setVisible(true);
         }else{
             JOptionPane.showMessageDialog( null, "Conexión Fallida\nAsegurese de haber digitado correctamente su informacion","Conexion Fallida",JOptionPane.ERROR_MESSAGE );
         }

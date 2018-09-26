@@ -5,6 +5,7 @@
  */
 package acuario;
 
+import Conector.PostgreSQL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,13 +18,12 @@ import javax.swing.JOptionPane;
  * @author Camilo D'isidoro
  */
 public class Especie extends javax.swing.JFrame {
-        static Connection con;
-        static Statement stmt;
-
     /**
      * Creates new form Especie
      */
-    public Especie(Connection con,Statement stmt) {
+    public Especie() {
+            System.out.println(PostgreSQL.getCon());
+            System.out.println(PostgreSQL.getState());
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -164,19 +164,17 @@ public class Especie extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        if("".equals(codigoCampo.getText()) || "".equals(nombreCampo.getText()) || "".equals(alimentoCampo.getText())){
-            JOptionPane.showMessageDialog( null, "Guardado Fallido\nAsegurese de completar todos los campos","Guardado Fallido",JOptionPane.ERROR_MESSAGE );
-        }else{
-            int cod = Integer.parseInt(codigoCampo.getText());
-            String nom = nombreCampo.getText();
-            String alimento = alimentoCampo.getText();
-            String SQL = "INSERT INTO 'Especie' ('IDEsp','NombreEsp','AlimentoEsp') VALUES ("+cod+",'"+nom+"','"+alimento+"')";
-            try{
-                stmt.executeUpdate(SQL);
-            } catch (SQLException ex) {
-                System.out.println(ex);
+            System.out.println(PostgreSQL.getCon());
+            System.out.println(PostgreSQL.getState());
+            if("".equals(codigoCampo.getText()) || "".equals(nombreCampo.getText()) || "".equals(alimentoCampo.getText())){
+                JOptionPane.showMessageDialog( null, "Guardado Fallido\nAsegurese de completar todos los campos","Guardado Fallido",JOptionPane.ERROR_MESSAGE );
+            }else{
+                int cod = Integer.parseInt(codigoCampo.getText());
+                String nom = nombreCampo.getText();
+                String alimento = alimentoCampo.getText();
+                String sql = "INSERT INTO especie (idesp,nombreesp,alimentoesp) VALUES ("+cod+",'"+nom+"','"+alimento+"')";
+                PostgreSQL.comando(sql);
             }
-        }
     }//GEN-LAST:event_guardarActionPerformed
 
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
@@ -188,7 +186,7 @@ public class Especie extends javax.swing.JFrame {
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         dispose();
-        new Menu(con,stmt).setVisible(true);
+        new Menu().setVisible(true);
     }//GEN-LAST:event_volverActionPerformed
 
     /**
@@ -221,7 +219,7 @@ public class Especie extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Especie(con,stmt).setVisible(true);
+                new Especie().setVisible(true);
             }
         });
     }
