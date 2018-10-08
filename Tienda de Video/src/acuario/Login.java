@@ -5,8 +5,7 @@
  */
 package acuario;
 import Conector.*;
-import java.sql.Connection;
-import java.sql.Statement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 /**
  *
@@ -152,6 +151,7 @@ public class Login extends javax.swing.JFrame {
     private void iniciar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciar1ActionPerformed
         PostgreSQL conectar = new PostgreSQL();
         String pass = String.valueOf(passCampo.getPassword());
+        ResultSet test = null;
         int conexion = conectar.loginDB(usuarioCampo.getText(), pass);
         if(conexion==1){
             JOptionPane.showMessageDialog( null, "Conexión Exitosa\nPuede ingresar al sistema");

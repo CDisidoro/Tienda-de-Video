@@ -238,7 +238,7 @@ public class Tanque extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog( null, "Dato Erroneo\nSolo digite numeros en el campo Codigo","Dato Erroneo",JOptionPane.ERROR_MESSAGE );
             }else{
                     int cod = Integer.parseInt(codigoCampo.getText());
-                    String sql="DELETE FROM especie WHERE idtan="+cod;
+                    String sql="DELETE FROM tanque WHERE idtan="+cod;
                     if(PostgreSQL.actualizar(sql)==1){
                     JOptionPane.showMessageDialog( null, "Borrado Exitoso\nSe ha borrado con éxito el tanque","Borrado Exitoso",JOptionPane.INFORMATION_MESSAGE );
                     }else{

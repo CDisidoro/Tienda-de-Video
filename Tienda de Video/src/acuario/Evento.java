@@ -5,7 +5,12 @@
  */
 package acuario;
 
+import Conector.PostgreSQL;
 import com.toedter.calendar.JCalendar;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,6 +34,7 @@ public class Evento extends javax.swing.JFrame {
     private void initComponents() {
 
         jCalendar1 = new com.toedter.calendar.JCalendar();
+        jTextField1 = new javax.swing.JTextField();
         guardar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
@@ -41,9 +47,11 @@ public class Evento extends javax.swing.JFrame {
         pez = new javax.swing.JLabel();
         estado = new javax.swing.JLabel();
         fecha = new javax.swing.JLabel();
-        pezCampo = new javax.swing.JComboBox<>();
         estadoCampo = new javax.swing.JTextField();
         fechaCampo = new com.toedter.calendar.JDateChooser();
+        pezCampo = new javax.swing.JTextField();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Evento");
@@ -58,9 +66,20 @@ public class Evento extends javax.swing.JFrame {
 
         buscar.setText("Buscar");
 
+        eliminar.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         eliminar.setText("Eliminar");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
 
         modificar.setText("Modificar");
+        modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarActionPerformed(evt);
+            }
+        });
 
         volver.setText("Regresar");
         volver.addActionListener(new java.awt.event.ActionListener() {
@@ -91,9 +110,7 @@ public class Evento extends javax.swing.JFrame {
         fecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fecha.setText("Fecha");
 
-        pezCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        fechaCampo.setDateFormatString("yyyy/MM/d");
+        fechaCampo.setDateFormatString("yyyy/MM/dd");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,20 +130,19 @@ public class Evento extends javax.swing.JFrame {
                             .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(limpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                                .addComponent(modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(pez, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(fecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(pezCampo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(fechaCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(limpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(fecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(fechaCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pezCampo)
+                            .addComponent(pez, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(volver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(estado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(estadoCampo, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,8 +157,8 @@ public class Evento extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(codigoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pezCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(estadoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(estadoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pezCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(fecha)
                 .addGap(18, 18, 18)
@@ -164,7 +180,28 @@ public class Evento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-
+            if("".equals(codigoCampo.getText()) || "".equals(estadoCampo.getText()) || "".equals(fechaCampo.getDate()) || "".equals(pezCampo.getText())){
+                JOptionPane.showMessageDialog( null, "Actualizacion Fallido\nAsegurese de completar todos los campos","Actualizacion Fallido",JOptionPane.ERROR_MESSAGE );
+            }else{
+                if(Validador.numeros(codigoCampo.getText()) == 0 || Validador.numeros(pezCampo.getText()) == 0){
+                JOptionPane.showMessageDialog( null, "Dato Erroneo\nSolo digite numeros en el campo Codigo","Dato Erroneo",JOptionPane.ERROR_MESSAGE );
+                }else{
+                    int pez = Integer.parseInt(pezCampo.getText());
+                    int cod = Integer.parseInt(codigoCampo.getText());
+                    String estado = estadoCampo.getText();
+                    DateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+                    java.util.Date fechautil = fechaCampo.getDate();
+                    
+                    String fecha = formato.format(fechautil);
+                    System.out.println(fecha);
+                    String sql = "INSERT INTO evento (idevt,idpez,fechaevt,estadoevt) VALUES ("+cod+","+pez+",'"+fecha+"','"+estado+"');";
+                    if(PostgreSQL.actualizar(sql)==1){
+                    JOptionPane.showMessageDialog( null, "Guardado Exitoso\nSe ha guardado con éxito el nuevo evento","Guardado Exitoso",JOptionPane.INFORMATION_MESSAGE );
+                    }else{
+                    JOptionPane.showMessageDialog( null, "Guardado Fallido\nVerifique que el código no haya sido ingresado para otro evento","Guardado Fallido",JOptionPane.ERROR_MESSAGE );
+                    }
+                }
+            }
     }//GEN-LAST:event_guardarActionPerformed
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
@@ -177,6 +214,45 @@ public class Evento extends javax.swing.JFrame {
         estadoCampo.setText(null);
         fechaCampo.setDate(null);
     }//GEN-LAST:event_limpiarActionPerformed
+
+    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
+            if("".equals(codigoCampo.getText()) || "".equals(estadoCampo.getText()) || "".equals(fechaCampo.getDate()) || "".equals(pezCampo.getText())){
+                JOptionPane.showMessageDialog( null, "Actualizacion Fallido\nAsegurese de completar todos los campos","Actualizacion Fallido",JOptionPane.ERROR_MESSAGE );
+            }else{
+                if(Validador.numeros(codigoCampo.getText()) == 0 || Validador.numeros(pezCampo.getText()) == 0){
+                JOptionPane.showMessageDialog( null, "Dato Erroneo\nSolo digite numeros en el campo Codigo","Dato Erroneo",JOptionPane.ERROR_MESSAGE );
+                }else{
+                    int pez = Integer.parseInt(pezCampo.getText());
+                    int cod = Integer.parseInt(codigoCampo.getText());
+                    String estado = estadoCampo.getText();
+                    java.util.Date fecha = fechaCampo.getDate();
+                    String sql = "UPDATE evento SET estadoevt='"+estado+"', fechaevt='"+fecha+"',idpez="+pez+" WHERE idevt="+cod;
+                    if(PostgreSQL.actualizar(sql)==1){
+                    JOptionPane.showMessageDialog( null, "Actualizacion Exitosa\nSe ha actualizado con éxito el evento","Actualizacion Exitosa",JOptionPane.INFORMATION_MESSAGE );
+                    }else{
+                    JOptionPane.showMessageDialog( null, "Actualizacion Fallida\nVerifique que el código haya sido ingresado para un evento","Actualizacion Fallida",JOptionPane.ERROR_MESSAGE );
+                    }
+                }
+            }
+    }//GEN-LAST:event_modificarActionPerformed
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        if("".equalsIgnoreCase(codigoCampo.getText())){
+                JOptionPane.showMessageDialog( null, "Borrado Fallido\nAsegurese de completar el campo:\nCodigo","Borrado Fallido",JOptionPane.ERROR_MESSAGE );
+        }else{
+            if(Validador.numeros(codigoCampo.getText()) == 0){
+                JOptionPane.showMessageDialog( null, "Dato Erroneo\nSolo digite numeros en el campo Codigo","Dato Erroneo",JOptionPane.ERROR_MESSAGE );
+            }else{
+                    int cod = Integer.parseInt(codigoCampo.getText());
+                    String sql="DELETE FROM evento WHERE idevt="+cod;
+                    if(PostgreSQL.actualizar(sql)==1){
+                    JOptionPane.showMessageDialog( null, "Borrado Exitoso\nSe ha borado con éxito el evento","Borrado Exitoso",JOptionPane.INFORMATION_MESSAGE );
+                    }else{
+                    JOptionPane.showMessageDialog( null, "Borrado Fallido\nVerifique que el código haya sido ingresado para un evento","Borrado Fallido",JOptionPane.ERROR_MESSAGE );
+                    }
+            }
+        }
+    }//GEN-LAST:event_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,10 +301,11 @@ public class Evento extends javax.swing.JFrame {
     private javax.swing.JButton guardar;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton limpiar;
     private javax.swing.JButton modificar;
     private javax.swing.JLabel pez;
-    private javax.swing.JComboBox<String> pezCampo;
+    private javax.swing.JTextField pezCampo;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }

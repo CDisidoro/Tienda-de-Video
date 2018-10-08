@@ -55,14 +55,18 @@ public class PostgreSQL {
         
         public static void imprimir(ResultSet resultado){
             try{
+                int filas=0;
+                int columnas = resultado.getMetaData().getColumnCount();
+                columnas++;
                 while(resultado.next()){
                     String dato = "";
-                    int columnas = resultado.getMetaData().getColumnCount();
                     for(int i=1;i<columnas;i++){
                         dato = dato + "  " + ((resultado.getObject(i) == null) ? "" : resultado.getObject(i).toString());
                     }
                     System.out.println(dato);
+                filas++;
                 }
+                System.out.println(filas);
             }catch(SQLException e){
                 System.out.println(e);
             }

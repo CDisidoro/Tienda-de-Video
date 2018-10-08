@@ -212,7 +212,7 @@ public class Especie extends javax.swing.JFrame {
                     int cod = Integer.parseInt(codigoCampo.getText());
                     String nom = nombreCampo.getText();
                     String alimento = alimentoCampo.getText();
-                    String sql = "UPDATE especie SET idesp="+cod+", nombreesp='"+nom+"', alimentoesp='"+alimento+"' WHERE idesp="+cod;
+                    String sql = "UPDATE especie SET nombreesp='"+nom+"', alimentoesp='"+alimento+"' WHERE idesp="+cod;
                     if(PostgreSQL.actualizar(sql)==1){
                     JOptionPane.showMessageDialog( null, "Actualizacion Exitosa\nSe ha actualizado con éxito la especie","Actualizacion Exitosa",JOptionPane.INFORMATION_MESSAGE );
                     }else{
