@@ -31,6 +31,7 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         archivo = new javax.swing.JMenu();
         Esp = new javax.swing.JMenuItem();
@@ -38,9 +39,15 @@ public class Menu extends javax.swing.JFrame {
         Pez = new javax.swing.JMenuItem();
         Evt = new javax.swing.JMenuItem();
         consulta = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         reportes = new javax.swing.JMenu();
         salir = new javax.swing.JMenu();
         salida = new javax.swing.JMenuItem();
+
+        jMenuItem4.setText("jMenuItem4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AcquaLand");
@@ -83,6 +90,39 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(archivo);
 
         consulta.setText("Consulta");
+
+        jMenuItem1.setText("Especie");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        consulta.add(jMenuItem1);
+
+        jMenuItem2.setText("Tanque");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        consulta.add(jMenuItem2);
+
+        jMenuItem3.setText("Pez");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        consulta.add(jMenuItem3);
+
+        jMenuItem5.setText("Evento");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        consulta.add(jMenuItem5);
+
         jMenuBar1.add(consulta);
 
         reportes.setText("Reportes");
@@ -150,6 +190,34 @@ public class Menu extends javax.swing.JFrame {
         new Evento().setVisible(true);
     }//GEN-LAST:event_EvtActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        buscar tabla;
+        String sql="SELECT nombreesp,alimentoesp FROM especie;";
+        tabla = new buscar(sql,new Object[]{"Nombre","Alimento"},1);
+        tabla.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        buscar tabla;
+        String sql="SELECT nombretan,colortan,volumentan FROM tanque;";
+        tabla = new buscar(sql,new Object[]{"Nombre","Color","Volumen"},2);
+        tabla.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        buscar tabla;
+        String sql="SELECT nombrepez,colorpez,pesopez FROM pez;";
+        tabla = new buscar(sql,new Object[]{"Nombre","Color","Peso"},3);
+        tabla.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        buscar tabla;
+        String sql="SELECT pez.nombrepez,fechaevt,estadoevt FROM evento,pez WHERE pez.idpez=evento.idpez;";
+        tabla = new buscar(sql,new Object[]{"Pez","Fecha","Evento"},4);
+        tabla.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -193,6 +261,11 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu archivo;
     private javax.swing.JMenu consulta;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenu reportes;
     private javax.swing.JMenuItem salida;
     private javax.swing.JMenu salir;

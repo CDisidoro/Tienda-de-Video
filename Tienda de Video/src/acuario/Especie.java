@@ -251,11 +251,11 @@ public class Especie extends javax.swing.JFrame {
         buscar tabla;
         if("".equalsIgnoreCase(nombreCampo.getText())==false){
             String sql="SELECT nombreesp,alimentoesp FROM especie WHERE nombreesp='"+nombreCampo.getText()+"';";
-            tabla = new buscar(sql,new Object[]{"Nombre","Alimento"},2);
+            tabla = new buscar(sql,new Object[]{"Nombre","Alimento"},1);
             tabla.setVisible(true);
         }else if("".equalsIgnoreCase(alimentoCampo.getText())==false){
             String sql="SELECT nombreesp,alimentoesp FROM especie WHERE alimentoesp='"+alimentoCampo.getText()+"';";
-            tabla = new buscar(sql,new Object[]{"Nombre","Alimento"},2);
+            tabla = new buscar(sql,new Object[]{"Nombre","Alimento"},1);
             tabla.setVisible(true);
         }else{
                 JOptionPane.showMessageDialog( null, "Busqueda Fallida\nAsegurese de completar cualquiera de los 2 campos:\nNombre,Alimento","Busqueda Fallida",JOptionPane.ERROR_MESSAGE );
