@@ -8,6 +8,7 @@ package acuario;
 import Conector.PostgreSQL;
 import com.toedter.calendar.JCalendar;
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -65,6 +66,11 @@ public class Evento extends javax.swing.JFrame {
         });
 
         buscar.setText("Buscar");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
 
         eliminar.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         eliminar.setText("Eliminar");
@@ -253,6 +259,25 @@ public class Evento extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_eliminarActionPerformed
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        ResultSet datos = null;
+        buscar tabla;
+        DateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+        java.util.Date fechautil = fechaCampo.getDate();
+        String fecha = formato.format(fechautil);
+        if("".equalsIgnoreCase(fechaCampo.getDate().toString())==false){
+                String sql="SELECT pez.nombrepez,fechaevt,estadoevt FROM evento,pez WHERE fechaevt='"+fecha+"' AND pez.idpez=evento.idpez;";
+                tabla = new buscar(sql,new Object[]{"Pez","Fecha","Evento"},4);
+                tabla.setVisible(true);
+        }else if("".equalsIgnoreCase(estadoCampo.getText())==false){
+                String sql="SELECT pez.nombrepez,fechaevt,estadoevt FROM evento,pez WHERE estadoevt='"+estadoCampo.getText()+" AND pez.idpez=evento.idpez;";
+                tabla = new buscar(sql,new Object[]{"Pez","Fecha","Evento"},4);
+                tabla.setVisible(true);
+        }else{
+                JOptionPane.showMessageDialog( null, "Busqueda Fallida\nAsegurese de completar cualquiera de los 2 campos:\nEstado,Fecha","Busqueda Fallida",JOptionPane.ERROR_MESSAGE );
+        }
+    }//GEN-LAST:event_buscarActionPerformed
 
     /**
      * @param args the command line arguments

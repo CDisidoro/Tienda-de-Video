@@ -70,6 +70,11 @@ public class Pez extends javax.swing.JFrame {
         });
 
         buscar.setText("Buscar");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
 
         eliminar.setText("Eliminar");
         eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -285,6 +290,26 @@ public class Pez extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_eliminarActionPerformed
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        ResultSet datos = null;
+        buscar tabla;
+        if("".equalsIgnoreCase(nombreCampo.getText())==false){
+            String sql="SELECT nombrepez,colorpez,pesopez FROM pez WHERE nombrepez='"+nombreCampo.getText()+"';";
+            tabla = new buscar(sql,new Object[]{"Nombre","Color","Peso"},3);
+            tabla.setVisible(true);
+        }else if("".equalsIgnoreCase(colorCampo.getText())==false){
+            String sql="SELECT nombrepez,colorpez,pesopez FROM pez WHERE colorpez='"+colorCampo.getText()+"';";
+            tabla = new buscar(sql,new Object[]{"Nombre","Color","Peso"},3);
+            tabla.setVisible(true);
+        }else if("".equalsIgnoreCase(pesoCampo.getText())==false){
+            String sql="SELECT nombrepez,colorpez,pesopez FROM pez WHERE pesopez='"+pesoCampo.getText()+"';";
+            tabla = new buscar(sql,new Object[]{"Nombre","Color","Peso"},3);
+            tabla.setVisible(true);
+        }else{
+                JOptionPane.showMessageDialog( null, "Busqueda Fallida\nAsegurese de completar cualquiera de los 3 campos:\nNombre,Color,Tanque","Busqueda Fallida",JOptionPane.ERROR_MESSAGE );
+        }
+    }//GEN-LAST:event_buscarActionPerformed
 
     /**
      * @param args the command line arguments

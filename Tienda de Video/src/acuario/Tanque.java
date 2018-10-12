@@ -74,6 +74,11 @@ public class Tanque extends javax.swing.JFrame {
         });
 
         buscar.setText("Buscar");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
 
         limpiar.setText("Limpiar");
         limpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -247,6 +252,26 @@ public class Tanque extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_eliminarActionPerformed
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        ResultSet datos = null;
+        buscar tabla;
+        if("".equalsIgnoreCase(nombreCampo.getText())==false){
+            String sql="SELECT nombretan,colortan,volumentan FROM tanque WHERE nombretan='"+nombreCampo.getText()+"';";
+            tabla = new buscar(sql,new Object[]{"Nombre","Color","Volumen"},2);
+            tabla.setVisible(true);
+        }else if("".equalsIgnoreCase(colorCampo.getText())==false){
+            String sql="SELECT nombretan,colortan,volumentan FROM tanque WHERE colortan='"+colorCampo.getText()+"';";
+            tabla = new buscar(sql,new Object[]{"Nombre","Color","Volumen"},2);
+            tabla.setVisible(true);
+        }else if("".equalsIgnoreCase(volumenCampo.getText())==false){
+            String sql="SELECT nombretan,colortan,volumentan FROM tanque WHERE volumentan='"+volumenCampo.getText()+"';";
+            tabla = new buscar(sql,new Object[]{"Nombre","Color","Volumen"},2);
+            tabla.setVisible(true);
+        }else{
+                JOptionPane.showMessageDialog( null, "Busqueda Fallida\nAsegurese de completar cualquiera de los 3 campos:\nNombre,Color,Tanque","Busqueda Fallida",JOptionPane.ERROR_MESSAGE );
+        }
+    }//GEN-LAST:event_buscarActionPerformed
 
     /**
      * @param args the command line arguments

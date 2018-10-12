@@ -7,6 +7,7 @@ package acuario;
 
 import Conector.PostgreSQL;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -88,6 +89,11 @@ public class Especie extends javax.swing.JFrame {
         });
 
         buscar.setText("Buscar");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
 
         limpiar.setText("Limpiar");
         limpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -239,6 +245,22 @@ public class Especie extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_eliminarActionPerformed
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        ResultSet datos = null;
+        buscar tabla;
+        if("".equalsIgnoreCase(nombreCampo.getText())==false){
+            String sql="SELECT nombreesp,alimentoesp FROM especie WHERE nombreesp='"+nombreCampo.getText()+"';";
+            tabla = new buscar(sql,new Object[]{"Nombre","Alimento"},2);
+            tabla.setVisible(true);
+        }else if("".equalsIgnoreCase(alimentoCampo.getText())==false){
+            String sql="SELECT nombreesp,alimentoesp FROM especie WHERE alimentoesp='"+alimentoCampo.getText()+"';";
+            tabla = new buscar(sql,new Object[]{"Nombre","Alimento"},2);
+            tabla.setVisible(true);
+        }else{
+                JOptionPane.showMessageDialog( null, "Busqueda Fallida\nAsegurese de completar cualquiera de los 2 campos:\nNombre,Alimento","Busqueda Fallida",JOptionPane.ERROR_MESSAGE );
+        }
+    }//GEN-LAST:event_buscarActionPerformed
 
     /**
      * @param args the command line arguments
