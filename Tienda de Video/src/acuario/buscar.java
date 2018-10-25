@@ -89,19 +89,19 @@ public class buscar extends javax.swing.JFrame {
                 switch(tab){
                     //Especie
                     case 1:
-                        modelo.addRow(new Object[]{resultado.getString("nombreesp"),resultado.getString("alimentoesp")});
+                        modelo.addRow(new Object[]{resultado.getString("idesp"),resultado.getString("nombreesp"),resultado.getString("alimentoesp")});
                         break;
                     //Tanque
                     case 2:
-                        modelo.addRow(new Object[]{resultado.getString("nombretan"),resultado.getString("colortan"),resultado.getString("volumentan")});
+                        modelo.addRow(new Object[]{resultado.getString("idtan"),resultado.getString("nombretan"),resultado.getString("colortan"),resultado.getString("volumentan")});
                         break;
                     //Pez
                     case 3:
-                        modelo.addRow(new Object[]{resultado.getString("nombrepez"),resultado.getString("colorpez"),resultado.getString("pesopez")});
+                        modelo.addRow(new Object[]{resultado.getString("idpez"),resultado.getString("nombrepez"),resultado.getString("colorpez"),resultado.getString("pesopez"),resultado.getString("nombreesp"),resultado.getString("nombretan")});
                         break;
                     //Evento
                     case 4:
-                        modelo.addRow(new Object[]{resultado.getString("nombrepez"),resultado.getString("fechaevt"),resultado.getString("estadoevt")});
+                        modelo.addRow(new Object[]{resultado.getString("idevt"),resultado.getString("nombrepez"),resultado.getString("fechaevt"),resultado.getString("estadoevt")});
                         break;
                 }
             }

@@ -4,12 +4,55 @@
  * and open the template in the editor.
  */
 package Objetos;
-
-/**
- *
- * @author Camilo D'isidoro
- */
 public class Especie {
-    private int codigo;
-    private String nombre,alimento;
+    private int idesp;
+    private String nombreesp,alimentoesp;
+    
+    public Especie(int idesp,String nombreesp,String alimentoesp){
+        this.idesp = idesp;
+        this.nombreesp = nombreesp;
+        this.alimentoesp = alimentoesp;
+    }
+
+    /**
+     * @return the idesp
+     */
+    public int getIdesp() {
+        return idesp;
+    }
+
+    /**
+     * @param idesp the idesp to set
+     */
+    public void setIdesp(int idesp) {
+        this.idesp = idesp;
+    }
+
+    /**
+     * @return the nombreesp
+     */
+    public String getNombreesp() {
+        return nombreesp;
+    }
+
+    /**
+     * @param nombreesp the nombreesp to set
+     */
+    public void setNombreesp(String nombreesp) {
+        this.nombreesp = nombreesp;
+    }
+
+    /**
+     * @return the alimentoesp
+     */
+    public String getAlimentoesp() {
+        return alimentoesp;
+    }
+
+    /**
+     * @param alimentoesp the alimentoesp to set
+     */
+    public void setAlimentoesp(String alimentoesp) {
+        this.alimentoesp = alimentoesp;
+    }
 }

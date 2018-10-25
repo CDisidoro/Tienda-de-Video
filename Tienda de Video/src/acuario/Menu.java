@@ -8,6 +8,9 @@ package acuario;
 import Conector.PostgreSQL;
 import java.sql.Connection;
 import java.sql.Statement;
+import Objetos.Imagen;
+import Objetos.Reporte;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,8 +23,16 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         setLocationRelativeTo(null);
+        pintar();
     }
-
+    
+    public void pintar(){
+        imagenP.removeAll();
+        imagenP.repaint();
+        Imagen foto = new Imagen();
+        imagenP.add(foto);
+        imagenP.repaint();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,6 +43,7 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem4 = new javax.swing.JMenuItem();
+        imagenP = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         archivo = new javax.swing.JMenu();
         Esp = new javax.swing.JMenuItem();
@@ -44,6 +56,10 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         reportes = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         salir = new javax.swing.JMenu();
         salida = new javax.swing.JMenuItem();
 
@@ -52,6 +68,17 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AcquaLand");
         setResizable(false);
+
+        javax.swing.GroupLayout imagenPLayout = new javax.swing.GroupLayout(imagenP);
+        imagenP.setLayout(imagenPLayout);
+        imagenPLayout.setHorizontalGroup(
+            imagenPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 440, Short.MAX_VALUE)
+        );
+        imagenPLayout.setVerticalGroup(
+            imagenPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 366, Short.MAX_VALUE)
+        );
 
         archivo.setText("Archivo");
 
@@ -126,6 +153,39 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(consulta);
 
         reportes.setText("Reportes");
+
+        jMenuItem6.setText("Especie");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        reportes.add(jMenuItem6);
+
+        jMenuItem7.setText("Tanque");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        reportes.add(jMenuItem7);
+
+        jMenuItem8.setText("Pez");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        reportes.add(jMenuItem8);
+
+        jMenuItem9.setText("Evento");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        reportes.add(jMenuItem9);
+
         jMenuBar1.add(reportes);
 
         salir.setText("Salir");
@@ -151,11 +211,11 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addComponent(imagenP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 366, Short.MAX_VALUE)
+            .addComponent(imagenP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -192,31 +252,67 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         buscar tabla;
-        String sql="SELECT nombreesp,alimentoesp FROM especie;";
-        tabla = new buscar(sql,new Object[]{"Nombre","Alimento"},1);
+        String sql="SELECT * FROM especie;";
+        tabla = new buscar(sql,new Object[]{"ID","Nombre","Alimento"},1);
         tabla.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         buscar tabla;
-        String sql="SELECT nombretan,colortan,volumentan FROM tanque;";
-        tabla = new buscar(sql,new Object[]{"Nombre","Color","Volumen"},2);
+        String sql="SELECT * FROM tanque;";
+        tabla = new buscar(sql,new Object[]{"ID","Nombre","Color","Volumen"},2);
         tabla.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         buscar tabla;
-        String sql="SELECT nombrepez,colorpez,pesopez FROM pez;";
-        tabla = new buscar(sql,new Object[]{"Nombre","Color","Peso"},3);
+        String sql="SELECT pez.idpez,pez.nombrepez,pez.colorpez,pez.pesopez,especie.nombreesp,tanque.nombretan FROM pez,especie,tanque WHERE pez.idesp = especie.idesp AND pez.idtan = tanque.idtan;";
+        tabla = new buscar(sql,new Object[]{"ID","Nombre","Color","Peso","Especie","Tanque"},3);
         tabla.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         buscar tabla;
-        String sql="SELECT pez.nombrepez,fechaevt,estadoevt FROM evento,pez WHERE pez.idpez=evento.idpez;";
-        tabla = new buscar(sql,new Object[]{"Pez","Fecha","Evento"},4);
+        String sql="SELECT pez.nombrepez,fechaevt,estadoevt,idevt FROM evento,pez WHERE pez.idpez=evento.idpez;";
+        tabla = new buscar(sql,new Object[]{"ID","Pez","Fecha","Evento"},4);
         tabla.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+       Reporte re = new Reporte();
+       if(re.reporteEvento()==1){
+            JOptionPane.showMessageDialog( null, "Reporte Generado\nSe ha generado exitosamente el reporte","Reporte Generado",JOptionPane.INFORMATION_MESSAGE );
+       }else{
+       JOptionPane.showMessageDialog( null, "Reporte Fallido\nError al generar el reporte","Reporte Fallido",JOptionPane.ERROR_MESSAGE );
+       }
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+       Reporte re = new Reporte();
+       if(re.reportePez()==1){
+            JOptionPane.showMessageDialog( null, "Reporte Generado\nSe ha generado exitosamente el reporte","Reporte Generado",JOptionPane.INFORMATION_MESSAGE );
+       }else{
+       JOptionPane.showMessageDialog( null, "Reporte Fallido\nError al generar el reporte","Reporte Fallido",JOptionPane.ERROR_MESSAGE );
+       }
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+       Reporte re = new Reporte();
+       if(re.reporteEspecie()==1){
+            JOptionPane.showMessageDialog( null, "Reporte Generado\nSe ha generado exitosamente el reporte","Reporte Generado",JOptionPane.INFORMATION_MESSAGE );
+       }else{
+       JOptionPane.showMessageDialog( null, "Reporte Fallido\nError al generar el reporte","Reporte Fallido",JOptionPane.ERROR_MESSAGE );
+       }
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+       Reporte re = new Reporte();
+       if(re.reporteTanque()==1){
+            JOptionPane.showMessageDialog( null, "Reporte Generado\nSe ha generado exitosamente el reporte","Reporte Generado",JOptionPane.INFORMATION_MESSAGE );
+       }else{
+       JOptionPane.showMessageDialog( null, "Reporte Fallido\nError al generar el reporte","Reporte Fallido",JOptionPane.ERROR_MESSAGE );
+       }
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,12 +356,17 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem Tan;
     private javax.swing.JMenu archivo;
     private javax.swing.JMenu consulta;
+    private javax.swing.JPanel imagenP;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu reportes;
     private javax.swing.JMenuItem salida;
     private javax.swing.JMenu salir;
